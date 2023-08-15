@@ -7,27 +7,26 @@ USE Health_Clinic_Lucas
 -- Tabela Genero
 CREATE TABLE Genero (
     IDGenero INT PRIMARY KEY IDENTITY,
-    NomeGenero VARCHAR(20) NOT NULL,
-    DescricaoGenero VARCHAR(100) -- Adicionado campo de descrição do gênero
+    NomeGenero VARCHAR(20) NOT NULL
 );
 
 -- Tabela Especialidade
 CREATE TABLE Especialidade (
-    IDEspecialidade INT PRIMARY KEY IDENTITY,
+    IdEspecialidade INT PRIMARY KEY IDENTITY,
     NomeEspecialidade VARCHAR(50) NOT NULL,
     DescricaoEspecialidade VARCHAR(200) -- Adicionado campo de descrição da especialidade
 );
 
 -- Tabela Perfis
 CREATE TABLE Perfis (
-    IDPerfil INT PRIMARY KEY IDENTITY,
+    IdPerfil INT PRIMARY KEY IDENTITY,
     NomePerfil VARCHAR(50) NOT NULL,
     DescricaoPerfil VARCHAR(100) -- Adicionado campo de descrição do perfil
 );
 
 -- Tabela Usuarios
 CREATE TABLE Usuarios (
-    IDUsuario INT PRIMARY KEY IDENTITY,
+    IdUsuario INT PRIMARY KEY IDENTITY,
     Nome VARCHAR(100) NOT NULL,
     Email VARCHAR(100) NOT NULL UNIQUE,
     Senha VARCHAR(100) NOT NULL,
