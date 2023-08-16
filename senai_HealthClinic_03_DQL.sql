@@ -9,6 +9,17 @@ Select * from Pacientes
 Select * from Perfis
 Select * from Usuarios
 
+--Consulta para listar 
+-- Id Consulta
+-- Data da Consulta
+-- Horario da Consulta
+-- Nome da Clinica
+-- Nome do Paciente
+-- Nome do Medico
+-- Especialidade do Medico
+-- CRM
+-- Prontuário ou Descricao
+-- FeedBack(Comentario da consulta)
 
 SELECT
     C.IdConsulta,
@@ -101,3 +112,9 @@ FROM Consultas
 JOIN Pacientes ON Consultas.IdPaciente = Pacientes.IdPaciente
 JOIN Medicos ON Consultas.IdMedico = Medicos.IdMedico
 JOIN Agendamentos ON Consultas.IdAgendamento = Agendamentos.IdAgendamento;
+
+
+
+
+
+

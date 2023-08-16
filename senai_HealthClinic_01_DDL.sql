@@ -50,7 +50,8 @@ CREATE TABLE Medicos (
 CREATE TABLE Pacientes (
     IdPaciente INT PRIMARY KEY IDENTITY,
 	IdUsuario INT FOREIGN KEY REFERENCES Usuarios(IdUsuario) NOT NULL,
-    IdGenero INT FOREIGN KEY REFERENCES Genero(IDGenero),
+    IdGenero INT FOREIGN KEY REFERENCES Genero(IDGenero) NOT NULL,
+	IdComentario INT FOREIGN KEY REFERENCES Comentarios(IdComentario),
     Nome VARCHAR(100) NOT NULL,
     DataNascimento DATE NOT NULL,
     Email VARCHAR(100),
@@ -95,6 +96,7 @@ CREATE TABLE Clinica (
 -- Tabela Comentários
 CREATE TABLE Comentarios (
     IdComentario INT PRIMARY KEY IDENTITY,
+	IdPaciente INT FOREIGN KEY REFERENCES Pacientes(IdPaciente),
     IdConsulta INT FOREIGN KEY REFERENCES Consultas(IdConsulta),
 	IdMedico INT FOREIGN KEY REFERENCES Medicos(IdMedico) NOT NULL,
     DataHoraComentario DATETIME NOT NULL,
