@@ -9,6 +9,27 @@ Select * from Pacientes
 Select * from Perfis
 Select * from Usuarios
 
+
+SELECT
+    C.IdConsulta,
+    A.DataHoraConsulta AS 'Data da Consulta',
+    CONVERT(VARCHAR, A.DataHoraConsulta, 108) AS 'Horario da Consulta',
+    Cl.NomeFantasia AS 'Nome da Clinica',
+    P.Nome AS 'Nome do Paciente',
+    M.Nome AS 'Nome do Medico',
+    E.NomeEspecialidade AS 'Especialidade do Medico',
+    M.CRM,
+    COALESCE(CONVERT(NVARCHAR(MAX), C.DescricaoConsulta), 'Consulta sem descricao') AS 'Prontuario ou Descricao',
+    COALESCE(Com.TextoComentario, 'Sem comentario') AS 'FeedBack(Comentario da consulta)'
+FROM Consultas C
+INNER JOIN Agendamentos A ON C.IdAgendamento = A.IdAgendamento
+INNER JOIN Pacientes P ON C.IdPaciente = P.IdPaciente
+INNER JOIN Medicos M ON C.IdMedico = M.IdMedico
+INNER JOIN Especialidade E ON M.IdEspecialidade = E.IdEspecialidade
+INNER JOIN Clinica Cl ON M.IdClinica = Cl.IdClinica
+LEFT JOIN Comentarios Com ON C.IdConsulta = Com.IdComentario;
+
+
 --Consulta para obter informações do paciente, consulta e médico:
 
 SELECT 

@@ -14,14 +14,14 @@ CREATE TABLE Genero (
 CREATE TABLE Especialidade (
     IdEspecialidade INT PRIMARY KEY IDENTITY,
     NomeEspecialidade VARCHAR(50) NOT NULL,
-    DescricaoEspecialidade VARCHAR(200) -- Adicionado campo de descrição da especialidade
+    DescricaoEspecialidade VARCHAR(200) 
 );
 
 -- Tabela Perfis
 CREATE TABLE Perfis (
     IdPerfil INT PRIMARY KEY IDENTITY,
     NomePerfil VARCHAR(50) NOT NULL,
-    DescricaoPerfil VARCHAR(100) -- Adicionado campo de descrição do perfil
+    DescricaoPerfil VARCHAR(100) 
 );
 
 -- Tabela Usuarios
@@ -38,6 +38,7 @@ CREATE TABLE Usuarios (
 CREATE TABLE Medicos (
     IdMedico INT PRIMARY KEY IDENTITY,
 	IdClinica INT FOREIGN KEY REFERENCES Clinica(IDClinica) NOT NULL,
+	IdUsuario INT FOREIGN KEY REFERENCES Usuarios(IdUsuario) NOT NULL,
     IdEspecialidade INT FOREIGN KEY REFERENCES Especialidade(IDEspecialidade) NOT NULL,
     Nome VARCHAR(100) NOT NULL,
     CRM INT NOT NULL UNIQUE,
@@ -48,6 +49,7 @@ CREATE TABLE Medicos (
 -- Tabela Pacientes
 CREATE TABLE Pacientes (
     IdPaciente INT PRIMARY KEY IDENTITY,
+	IdUsuario INT FOREIGN KEY REFERENCES Usuarios(IdUsuario) NOT NULL,
     IdGenero INT FOREIGN KEY REFERENCES Genero(IDGenero),
     Nome VARCHAR(100) NOT NULL,
     DataNascimento DATE NOT NULL,
@@ -93,7 +95,8 @@ CREATE TABLE Clinica (
 -- Tabela Comentários
 CREATE TABLE Comentarios (
     IdComentario INT PRIMARY KEY IDENTITY,
-    IdPaciente INT FOREIGN KEY REFERENCES Pacientes(IdPaciente),
+    IdConsulta INT FOREIGN KEY REFERENCES Consultas(IdConsulta),
+	IdMedico INT FOREIGN KEY REFERENCES Medicos(IdMedico) NOT NULL,
     DataHoraComentario DATETIME NOT NULL,
     TextoComentario TEXT,
     Avaliacao INT,
